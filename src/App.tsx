@@ -1,16 +1,14 @@
 import { useState } from 'react';
 
 interface FormData {
-  firstName: string;
-  lastName: string;
+  name: string;
   petChoice: string;
   petChoice2: string;
 }
 
 const App = () => {
   const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
+    name: '',
     petChoice: '',
     petChoice2: '',
   });
@@ -45,35 +43,13 @@ const App = () => {
 
           <div className='mt-5 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6'>
             <div className='sm:col-span-3'>
-              <label
-                htmlFor='firstName'
-                className='block text-sm font-medium text-gray-900'
-              >
-                First name
-              </label>
               <input
                 type='text'
-                name='firstName'
-                id='firstName'
+                name='name'
+                id='name'
                 onChange={handleChange}
-                className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-              />
-            </div>
-
-            <div className='sm:col-span-3'>
-              <label
-                htmlFor='lastName'
-                className='block text-sm font-medium text-gray-900'
-              >
-                Last name
-              </label>
-
-              <input
-                type='text'
-                name='lastName'
-                id='lastName'
-                onChange={handleChange}
-                className='mt-2 mb-6 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                placeholder='Enter your name here'
+                className='mb-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
               />
             </div>
           </div>
@@ -150,7 +126,7 @@ const App = () => {
                   onChange={handleChange}
                   id='petChoice2'
                   name='petChoice2'
-                  className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
+                  className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm'
                 >
                   <option>---chose answer---- </option>
                   <option value='dogs'>
