@@ -151,6 +151,16 @@ const App = () => {
           </div>
         </form>
       </section>
+
+      <section>
+        <h2 className='mt-6 mb-2 text-2xl text-center my-2'>Your results:</h2>
+        <p className='max-w-[23rem] text-sm leading-6 text-gray-600'>
+          Results will be here Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Ipsum quo dolores quas! Qui eaque obcaecati
+          accusantium ipsam maiores illum molestiae quibusdam ullam facere? A
+          tempora eveniet tempore dolorum nihil perspiciatis!
+        </p>
+      </section>
     </main>
   );
 };
