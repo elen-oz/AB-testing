@@ -31,7 +31,7 @@ const App = () => {
 
   return (
     <main className='flex flex-col items-center'>
-      <h1 className='text-4xl font-bold my-4'> Welcome to A/B Testing</h1>
+      <h1 className='text-4xl font-bold my-4'>{`<A/B Testing>`}</h1>
 
       <section>
         <h2 className='text-2xl text-center my-2'>Personality test</h2>
