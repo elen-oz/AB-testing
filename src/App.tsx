@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
 
 type FormDataType = {
+  variant: 'variantA' | 'variantB';
   userName: string;
   petChoice: 'dogs' | 'cats' | 'allergic' | '';
 };
 
-type VersionType = 'current' | 'newOne';
-
 const App = () => {
-  const [version, setVersion] = useState<VersionType>('current');
   const [formData, setFormData] = useState<FormDataType>({
+    variant: 'variantA',
     userName: '',
     petChoice: '',
   });
@@ -21,9 +20,9 @@ const App = () => {
     randomNumber = Math.random();
 
     if (randomNumber < 0.6) {
-      setVersion('current');
+      setFormData({ ...formData, variant: 'variantA' });
     } else {
-      setVersion('newOne');
+      setFormData({ ...formData, variant: 'variantB' });
     }
   }, []);
 
@@ -43,7 +42,10 @@ const App = () => {
     console.log('Form Data:', formData);
 
     const nameAnswer =
-      formData.userName.split(' ').join('') === '' ? 'ANON' : formData.userName;
+      formData.userName.split(' ').join('') === ''
+        ? 'ANON'
+        : formData.userName.charAt(0).toUpperCase() +
+          formData.userName.slice(1);
 
     let petAnswer: string;
 
@@ -87,7 +89,7 @@ const App = () => {
           </div>
 
           <fieldset>
-            {version === 'current' ? (
+            {formData.variant === 'variantA' ? (
               <>
                 <legend className='text-sm font-semibold leading-6 text-gray-900 my-4'>
                   Are you a dog person or a cat person?
@@ -181,14 +183,16 @@ const App = () => {
             <button
               type='submit'
               className={`rounded-md ${
-                version === 'current' ? 'bg-indigo-600' : 'bg-emerald-600'
+                formData.variant === 'variantA'
+                  ? 'bg-indigo-600'
+                  : 'bg-emerald-600'
               } px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 ${
-                version === 'current'
+                formData.variant === 'variantA'
                   ? 'hover:bg-indigo-500'
                   : 'hover:bg-emerald-500'
               } focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400`}
             >
-              {version === 'current' ? 'Save' : 'Submit'}
+              {formData.variant === 'variantA' ? 'Save' : 'Submit'}
             </button>
           </div>
         </form>
