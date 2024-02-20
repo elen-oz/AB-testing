@@ -25,8 +25,6 @@ const App = () => {
     } else {
       setVersion('newOne');
     }
-
-    console.log('randomNumber', randomNumber);
   }, []);
 
   const handleChange = (
@@ -82,8 +80,8 @@ const App = () => {
                 id='userName'
                 required
                 onChange={handleChange}
-                placeholder='Enter your name here'
-                className='mb-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                placeholder='Your name'
+                className='mb-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6'
               />
             </div>
           </div>
@@ -104,7 +102,7 @@ const App = () => {
                       onChange={handleChange}
                       name='petChoice'
                       type='radio'
-                      className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
+                      className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-gray-600'
                     />
                     <label
                       htmlFor='dogs'
@@ -121,7 +119,7 @@ const App = () => {
                       onChange={handleChange}
                       name='petChoice'
                       type='radio'
-                      className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
+                      className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-gray-600'
                     />
                     <label
                       htmlFor='cats'
@@ -138,7 +136,7 @@ const App = () => {
                       onChange={handleChange}
                       name='petChoice'
                       type='radio'
-                      className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
+                      className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-gray-600'
                     />
                     <label
                       htmlFor='none'
@@ -163,7 +161,7 @@ const App = () => {
                     id='petChoice'
                     name='petChoice'
                     required
-                    className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm'
+                    className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:max-w-xs sm:text-sm'
                   >
                     <option>--- select option ---- </option>
                     <option value='dogs'>
@@ -184,9 +182,13 @@ const App = () => {
               type='submit'
               className={`rounded-md ${
                 version === 'current' ? 'bg-indigo-600' : 'bg-emerald-600'
-              } px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+              } px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 ${
+                version === 'current'
+                  ? 'hover:bg-indigo-500'
+                  : 'hover:bg-emerald-500'
+              } focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400`}
             >
-              Save
+              {version === 'current' ? 'Save' : 'Submit'}
             </button>
           </div>
         </form>
