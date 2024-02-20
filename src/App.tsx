@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 
 type FormDataType = {
-  name: string;
-  petChoice: string;
-  petChoice2: string;
+  userName: string;
+  petChoice: 'dogs' | 'cats' | 'allergic' | '';
 };
 
 type VersionType = 'current' | 'newOne';
@@ -11,10 +10,10 @@ type VersionType = 'current' | 'newOne';
 const App = () => {
   const [version, setVersion] = useState<VersionType>('current');
   const [formData, setFormData] = useState<FormDataType>({
-    name: '',
+    userName: '',
     petChoice: '',
-    petChoice2: '',
   });
+  const [userResponse, setUserResponse] = useState<string | null>(null);
 
   let randomNumber: number;
 
@@ -28,10 +27,7 @@ const App = () => {
     }
 
     console.log('randomNumber', randomNumber);
-    // console.log('version', version);
   }, []);
-
-  // console.log('randomNumber2', randomNumber);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -47,9 +43,24 @@ const App = () => {
     e.preventDefault();
 
     console.log('Form Data:', formData);
-  };
 
-  // console.log('version2', version);
+    const nameAnswer =
+      formData.userName.split(' ').join('') === '' ? 'ANON' : formData.userName;
+
+    let petAnswer: string;
+
+    if (formData.petChoice === 'allergic') {
+      petAnswer = `you are allergic 🙁`;
+    } else if (formData.petChoice === 'dogs') {
+      petAnswer = `you are DOG-person 🐶`;
+    } else if (formData.petChoice === 'cats') {
+      petAnswer = `you are cat-person 🐱`;
+    } else {
+      petAnswer = `you don't chose an answer`;
+    }
+
+    setUserResponse(`Your are ${nameAnswer} and ${petAnswer}`);
+  };
 
   return (
     <main className='flex flex-col items-center'>
@@ -67,8 +78,9 @@ const App = () => {
             <div className='sm:col-span-3'>
               <input
                 type='text'
-                name='name'
-                id='name'
+                name='userName'
+                id='userName'
+                required
                 onChange={handleChange}
                 placeholder='Enter your name here'
                 className='mb-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
@@ -77,7 +89,6 @@ const App = () => {
           </div>
 
           <fieldset>
-            {/* ------------ 1 ----------------------- */}
             {version === 'current' ? (
               <>
                 <legend className='text-sm font-semibold leading-6 text-gray-900 my-4'>
@@ -142,15 +153,16 @@ const App = () => {
               <div className='mt-6 space-y-6 flex items-center gap-x-3'>
                 <div className='sm:col-span-3'>
                   <label
-                    htmlFor='petChoice2'
+                    htmlFor='petChoice'
                     className='block text-sm font-semibold leading-6 text-gray-900'
                   >
                     Are you a dog person or a cat person?
                   </label>
                   <select
                     onChange={handleChange}
-                    id='petChoice2'
-                    name='petChoice2'
+                    id='petChoice'
+                    name='petChoice'
+                    required
                     className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm'
                   >
                     <option>--- select option ---- </option>
@@ -165,8 +177,6 @@ const App = () => {
                 </div>
               </div>
             )}
-
-            {/* --------------------- 2 ------------------------ */}
           </fieldset>
 
           <div className='mt-6 flex items-center justify-center'>
@@ -183,13 +193,16 @@ const App = () => {
       </section>
 
       <section>
-        <h2 className='mt-6 mb-2 text-2xl text-center my-2'>Your results:</h2>
-        <p className='max-w-[23rem] text-sm leading-6 text-gray-600'>
-          Results will be here Lorem ipsum dolor sit, amet consectetur
-          adipisicing elit. Ipsum quo dolores quas! Qui eaque obcaecati
-          accusantium ipsam maiores illum molestiae quibusdam ullam facere? A
-          tempora eveniet tempore dolorum nihil perspiciatis!
-        </p>
+        {userResponse && (
+          <>
+            <h2 className='mt-6 mb-2 text-2xl text-center my-2'>
+              Your results:
+            </h2>
+            <p className='max-w-[23rem] text-sm leading-6 text-gray-600'>
+              {userResponse}
+            </p>
+          </>
+        )}
       </section>
     </main>
   );
