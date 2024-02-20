@@ -3,15 +3,16 @@ import { useEffect, useState } from 'react';
 type FormDataType = {
   variant: 'variantA' | 'variantB';
   userName: string;
-  petChoice: 'dogs' | 'cats' | 'allergic' | '';
+  userSelect: 'dogs' | 'cats' | 'allergic' | '';
 };
 
 const App = () => {
-  const [formData, setFormData] = useState<FormDataType>({
+  const initialFormData: FormDataType = {
     variant: 'variantA',
     userName: '',
-    petChoice: '',
-  });
+    userSelect: '',
+  };
+  const [formData, setFormData] = useState<FormDataType>(initialFormData);
   const [userResponse, setUserResponse] = useState<string | null>(null);
 
   let randomNumber: number;
@@ -49,11 +50,11 @@ const App = () => {
 
     let petAnswer: string;
 
-    if (formData.petChoice === 'allergic') {
+    if (formData.userSelect === 'allergic') {
       petAnswer = `you are allergic 🙁`;
-    } else if (formData.petChoice === 'dogs') {
+    } else if (formData.userSelect === 'dogs') {
       petAnswer = `you are DOG-person 🐶`;
-    } else if (formData.petChoice === 'cats') {
+    } else if (formData.userSelect === 'cats') {
       petAnswer = `you are cat-person 🐱`;
     } else {
       petAnswer = `you don't chose an answer`;
@@ -62,12 +63,25 @@ const App = () => {
     setUserResponse(`Your are ${nameAnswer} and ${petAnswer}`);
   };
 
+  const clearForm = () => {
+    // todo: clear form code here;
+    console.log('Data was removed!');
+  };
+
   return (
     <main className='flex flex-col items-center'>
       <h1 className='text-4xl font-bold my-4'>{`<A/B Testing>`}</h1>
 
       <section>
         <h2 className='text-2xl text-center my-2'>Personality test</h2>
+
+        <p className='max-w-[23rem] text-sm leading-6 text-gray-400'>
+          All your entered data is confidential, however, if you want to delete
+          your data,{' '}
+          <a className='underline' onClick={clearForm}>
+            click here
+          </a>
+        </p>
 
         <form onSubmit={onSubmitHandle}>
           <p className='mt-1 text-sm leading-6 text-gray-600'>
@@ -100,9 +114,9 @@ const App = () => {
                     <input
                       id='dogs'
                       value='dogs'
-                      checked={formData['petChoice'] === 'dogs'}
+                      checked={formData['userSelect'] === 'dogs'}
                       onChange={handleChange}
-                      name='petChoice'
+                      name='userSelect'
                       type='radio'
                       className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-gray-600'
                     />
@@ -117,9 +131,9 @@ const App = () => {
                     <input
                       id='cats'
                       value='cats'
-                      checked={formData['petChoice'] === 'cats'}
+                      checked={formData['userSelect'] === 'cats'}
                       onChange={handleChange}
-                      name='petChoice'
+                      name='userSelect'
                       type='radio'
                       className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-gray-600'
                     />
@@ -134,9 +148,9 @@ const App = () => {
                     <input
                       id='none'
                       value='allergic'
-                      checked={formData['petChoice'] === 'allergic'}
+                      checked={formData['userSelect'] === 'allergic'}
                       onChange={handleChange}
-                      name='petChoice'
+                      name='userSelect'
                       type='radio'
                       className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-gray-600'
                     />
@@ -153,15 +167,15 @@ const App = () => {
               <div className='mt-6 space-y-6 flex items-center gap-x-3'>
                 <div className='sm:col-span-3'>
                   <label
-                    htmlFor='petChoice'
+                    htmlFor='userSelect'
                     className='block text-sm font-semibold leading-6 text-gray-900'
                   >
                     Are you a dog person or a cat person?
                   </label>
                   <select
                     onChange={handleChange}
-                    id='petChoice'
-                    name='petChoice'
+                    id='userSelect'
+                    name='userSelect'
                     required
                     className='mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:max-w-xs sm:text-sm'
                   >
