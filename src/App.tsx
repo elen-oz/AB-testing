@@ -74,7 +74,7 @@ const App = () => {
             Let's see what kind of person you are.
           </p>
 
-          <div className='mt-5 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6'>
+          <div className='mt-5 grid grid-cols-1 gap-y-4'>
             <div className='sm:col-span-3'>
               <input
                 type='text'
