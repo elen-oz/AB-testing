@@ -1,6 +1,6 @@
 # A/B Testing
 
-This project is a demonstration of setting up and conducting an A/B test using React, TypeScript, and Tailwind CSS.
+This project is a demonstration of setting up and conducting an A/B test using *React, TypeScript, and Tailwind CSS*.
 
 ## Project Overview
 
@@ -8,9 +8,9 @@ The goal of this project was to create a website with an A/B test to demonstrate
 
 ## Features
 
-- Dynamic Section: The A/B test is conducted dynamically, with users being randomly assigned to one of two variants.
-- CTA with Tracking: The submission of the personality test form is tracked to analyze user interactions (User responses are logged in the console).
-- GDPR Compliance: User data privacy is maintained, and users have the option to delete their data.
+- **Dynamic Section**: The A/B test is conducted dynamically, with users being randomly assigned to one of two variants.
+- **CTA with Tracking**: The submission of the personality test form is tracked to analyze user interactions (User responses are logged in the console).
+- **GDPR Compliance**: User data privacy is maintained, and users have the option to delete their data.
 - Two variants of content presentation:
   - Input through radio buttons.
   - Dropdown selection in the form.
