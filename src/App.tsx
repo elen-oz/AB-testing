@@ -15,7 +15,7 @@ const App = () => {
   useEffect(() => {
     const randomNumber = Math.random();
 
-    if (randomNumber < 0.6) {
+    if (randomNumber <= 0.5) {
       setValue('variant', 'variantA');
     } else {
       setValue('variant', 'variantB');
